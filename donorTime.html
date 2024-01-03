@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receiver Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="bloodbank.css">
+    <style>
+        body {
+            background-image: url('blood2.jpg');
+            background-size: cover;
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            color: #faf8f8;
+        }
+
+        label {
+            color: #fdf9fa;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type='text'], select, input[type='date'], input[type='time'] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        input[type='submit'] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4b86ed;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type='submit']:hover {
+            background-color: #bb2d3b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Enter the required details</h1>
+    <form action="donate.php" method="post" onsubmit="showDialog()">
+        <label for="uname">Name: </label>
+        <input type="text" name="uname" id="uname">
+
+        <label for="bg">Blood group:</label>
+        <select name="bg" id="bg">
+            <option value="select">select</option>
+            <option value="A+">A+</option>
+            <option value="B+">B+</option>
+            <option value="AB+">AB+</option>
+            <option value="O+">O+</option>
+            <option value="A-">A-</option>
+            <option value="B-">B-</option>
+            <option value="AB-">AB-</option>
+            <option value="O-">O-</option>
+        </select>
+
+        <label for="donorDate">Date of donation: </label>
+        <input type="date" name="donorDate" id="donorDate">
+
+        <label for="donorTime">Time of donation: </label>
+        <input type="time" name="donorTime" id="donorTime">
+
+        <input type="Submit" value="Submit" class="btn btn-primary">
+    </form>
+</div>
+<script type="text/javascript">
+    function showDialog() {
+        alert("Registration complete! Thank you for your donation.");
+        window.location.href = "dashboard.html";
+        return false; // Prevents the form from submitting directly (optional)
+    }
+
+    $(function () {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+        $('#donorDate').attr('min', maxDate);
+    });
+</script>
+</body>
+</html>
